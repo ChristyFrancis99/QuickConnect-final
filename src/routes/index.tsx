@@ -43,7 +43,7 @@ function Index() {
     <>
       <header className={`hero-header${isScrolled ? " is-scrolled" : ""}`}>
         <div className="hero-header__inner">
-          <a className="brand-lockup" href="/dashboard" aria-label="QuickConnect home" onClick={closeMenu}>
+          <a className="brand-lockup" href="/" aria-label="QuickConnect home" onClick={closeMenu}>
             <img className="brand-logo" src={logo} alt="QuickConnect" />
           </a>
 
@@ -55,7 +55,7 @@ function Index() {
           </nav>
 
           <div className="header-actions">
-            <a className="header-login" href="/dashboard">Log In</a>
+            <a className="header-login" href="/login">Log In</a>
             <a className="header-cta" href="/dashboard">Get Started <ArrowRight size={14} /></a>
           </div>
 
@@ -78,7 +78,7 @@ function Index() {
             <a href="#use-cases" onClick={closeMenu}>Use Cases</a>
             <a href="#about" onClick={closeMenu}>About</a>
             <div className="mobile-nav__actions">
-              <a href="/dashboard" onClick={closeMenu}>Log In</a>
+              <a href="/login" onClick={closeMenu}>Log In</a>
               <a className="header-cta" href="/dashboard" onClick={closeMenu}>Get Started <ArrowRight size={14} /></a>
             </div>
           </nav>
