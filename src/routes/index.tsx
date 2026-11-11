@@ -85,7 +85,7 @@ function Index() {
         )}
       </header>
 
-      <main ref={heroStageRef} className="hero-scroll-stage">
+      <main ref={heroStageRef} className="hero-scroll-stage" data-hero-stage>
         <section className="hero-sticky" aria-labelledby="hero-title">
           <div className="hero-main" id="top">
             <div className="hero-copy">
