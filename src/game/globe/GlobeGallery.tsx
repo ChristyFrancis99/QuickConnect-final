@@ -24,13 +24,13 @@ type Panel = {
   imageIndex: number;
 };
 
-function createPanels(): Panel[] {
+function createPanels(rows = ROWS): Panel[] {
   const panels: Panel[] = [];
 
-  for (let row = 0; row < ROWS; row += 1) {
-    const latitude = -Math.PI / 2 + (Math.PI * (row + 0.5)) / ROWS;
+  for (let row = 0; row < rows; row += 1) {
+    const latitude = -Math.PI / 2 + (Math.PI * (row + 0.5)) / rows;
     const count = Math.max(4, Math.round(14 * Math.cos(latitude)));
-    const latitudeStep = Math.PI / ROWS;
+    const latitudeStep = Math.PI / rows;
     const longitudeStep = (Math.PI * 2) / count;
 
     for (let column = 0; column < count; column += 1) {
@@ -108,7 +108,9 @@ function GalleryPanels({
   reducedMotion: RefObject<boolean>;
 }) {
   const textures = useLoader(TextureLoader, PHOTO_PATHS);
-  const panels = useMemo(() => createPanels(), []);
+  const { size } = useThree();
+  const rows = size.width <= 768 ? 5 : ROWS;
+  const panels = useMemo(() => createPanels(rows), [rows]);
   const meshes = useRef<(THREE.Mesh | null)[]>([]);
   const materials = useRef<(THREE.MeshStandardMaterial | null)[]>([]);
 
@@ -186,10 +188,14 @@ function GlobeMotion({
   useFrame((_, delta) => {
     const globe = globeRef.current;
     if (!globe) return;
-    const isMobile = size.width <= 680;
+    const isMobile = size.width <= 768;
     globe.position.set(0, 0, 0);
     globe.scale.setScalar(isMobile ? 0.9 : 1.32);
-    const breakup = reducedMotion.current ? 0 : progress.get();
+    if (isMobile) {
+      globe.rotation.x = 0;
+      globe.rotation.z = 0;
+    }
+    const breakup = reducedMotion.current || isMobile ? 0 : progress.get();
 
     if (camera instanceof THREE.PerspectiveCamera) {
       const targetFov = getGlobeCameraFov(breakup);
@@ -223,6 +229,9 @@ export function GlobeGallery({ scrollTarget }: GlobeGalleryProps) {
   );
   const reducedMotion = useRef(prefersReducedMotion);
   const [isInView, setIsInView] = useState(true);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches,
+  );
   const { scrollYProgress } = useScroll({
     target: scrollTarget as RefObject<HTMLElement | null>,
     offset: ["start start", "end end"],
@@ -266,6 +275,14 @@ export function GlobeGallery({ scrollTarget }: GlobeGalleryProps) {
   }, []);
 
   useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px)");
+    const updateMobile = () => setIsMobile(media.matches);
+    updateMobile();
+    media.addEventListener("change", updateMobile);
+    return () => media.removeEventListener("change", updateMobile);
+  }, []);
+
+  useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     reducedMotion.current = preference.matches;
     setPrefersReducedMotion(preference.matches);
@@ -306,10 +323,10 @@ export function GlobeGallery({ scrollTarget }: GlobeGalleryProps) {
       />
       <div className="globe-orbit globe-orbit--one" aria-hidden="true" />
       <div className="globe-orbit globe-orbit--two" aria-hidden="true" />
-      <motion.div className="globe-canvas-expansion" style={{ scale: prefersReducedMotion ? 1 : explosionScale }}>
+      <motion.div className="globe-canvas-expansion" style={{ scale: prefersReducedMotion || isMobile ? 1 : explosionScale }}>
       <Canvas
         frameloop={isInView ? (prefersReducedMotion ? "demand" : "always") : "never"}
-        dpr={[1, 1.25]}
+        dpr={[1, 1.5]}
         camera={{ position: [0, 0, 7.2], fov: 40 }}
         gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
         className="globe-canvas"
