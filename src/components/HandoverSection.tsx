@@ -279,7 +279,7 @@ export default function HandoverSection() {
           padding: clamp(80px, 10vw, 140px) clamp(20px, 5vw, 72px);
           color: var(--qc-handover-charcoal);
           font-family: "Plus Jakarta Sans", sans-serif;
-          background: transparent;
+          background: #F5F4F0;
           isolation: isolate;
         }
 
