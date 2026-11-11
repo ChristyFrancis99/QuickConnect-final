@@ -481,7 +481,8 @@ export default function HandoverSection() {
           font-size: 15px;
           font-weight: 400;
           line-height: 1.7;
-          opacity: 1;\n          color: #4f4a42;
+          opacity: 1;
+          color: #4f4a42;
         }
 
         .qc-handover__sr-only {
@@ -548,6 +549,7 @@ export default function HandoverSection() {
           .qc-handover__visual figcaption span {
             display: block;
             font-size: 8px;
+            font-weight: 800;
             line-height: 1.25;
           }
 
