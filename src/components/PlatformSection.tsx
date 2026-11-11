@@ -675,7 +675,7 @@ export default function PlatformSection() {
             top: calc(var(--qc-nav-height) + 12px);
             height: auto;
             min-height: 0;
-            margin-bottom: 8svh;
+            margin-bottom: 0;
             perspective: none;
           }
 
