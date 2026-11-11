@@ -410,6 +410,8 @@ Copy this template into the session log after each build session:
 - [x] Simplify the mobile platform stack with a shared sticky offset, opaque cards, no 3D tilt, smaller overlap scaling, and no trailing stack space.
 - [x] Keep handover steps legible before activation; make the mobile section heading sticky and position the photo alongside it so it does not take a separate block before step 01.
 - [x] Disable problem-card auto-cycling on mobile.
+- [x] Replace the hero header's React scroll-state handler with a cleaned-up sentinel observer; make the CTA reveal one-shot and visible when IntersectionObserver is unavailable.
+- [x] Remove problem-card height/flex-grow animation and keep all section transitions limited to transform/opacity (filter only for the continuity panel).
 - [ ] Verify at 320px, 360px, 390px, 430px and 480px in Android Chrome; check desktop visuals for regressions.
 - [ ] Run lint, tests, and production build in a local checkout or CI. These checks were not run as part of this GitHub-only edit session.
 
