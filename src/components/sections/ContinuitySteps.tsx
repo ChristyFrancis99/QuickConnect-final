@@ -66,11 +66,11 @@ function Pin({ progress, index, reduced }: { progress: MotionValue<number>; inde
   );
 }
 
-function StepCard({ step, index, progress, reduced }: { step: Step; index: number; progress: MotionValue<number>; reduced: boolean }) {
+function StepCard({ step, index, progress, reduced, desktop }: { step: Step; index: number; progress: MotionValue<number>; reduced: boolean; desktop: boolean }) {
   const start = index * 0.235;
   const appear = start + 0.115;
   const settle = start + 0.205;
-  const sideOffset = step.side === "right" ? 48 : -48;
+  const sideOffset = desktop ? (step.side === "right" ? 28 : -28) : 0;
   const opacity = useTransform(progress, [start, appear, settle], [0, 0.15, 1]);
   const y = useTransform(progress, [start, appear, settle], [60, 30, 0]);
   const x = useTransform(progress, [start, appear, settle], [sideOffset, sideOffset * 0.45, 0]);
@@ -80,7 +80,7 @@ function StepCard({ step, index, progress, reduced }: { step: Step; index: numbe
   return (
     <motion.li
       data-step-card
-      className={"relative z-10 w-full max-w-[340px] " + (step.side === "left" ? "self-start md:ml-[3%]" : "self-end md:mr-[3%]")}
+      className={"relative z-10 w-full max-w-[340px] self-center " + (step.side === "left" ? "md:self-start md:ml-[3%]" : "md:self-end md:mr-[3%]")}
       style={reduced ? undefined : { opacity, y, x, scale, rotate }}
     >
       <article className="rounded-[28px] border border-[#8F744C]/[0.12] bg-white/95 p-[14px] shadow-[0_18px_48px_rgba(91,72,43,.105),0_3px_10px_rgba(91,72,43,.055)]" aria-labelledby={"continuity-step-" + step.number}>
@@ -119,8 +119,17 @@ export default function ContinuitySteps() {
   const listRef = useRef<HTMLOListElement>(null);
   const reduced = Boolean(useReducedMotion());
   const [connector, setConnector] = useState<Connector>({ paths: [], width: 0, height: 0 });
+  const [desktop, setDesktop] = useState(false);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 25, mass: 0.35 });
+  const progress = useSpring(scrollYProgress, { stiffness: 180, damping: 32, mass: 0.22 });
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px)");
+    const update = () => setDesktop(media.matches);
+    update();
+    media.addEventListener?.("change", update);
+    return () => media.removeEventListener?.("change", update);
+  }, []);
 
   const updateConnectors = useCallback(() => {
     if (!listRef.current) return;
@@ -151,12 +160,12 @@ export default function ContinuitySteps() {
     <section
       ref={sectionRef}
       aria-labelledby="continuity-steps-heading"
-      className="relative isolate overflow-clip bg-[#F5F4F0] px-[18px] py-16 text-[#252525] md:px-[5vw] md:py-28"
+      className="relative isolate overflow-hidden bg-[#F5F4F0] px-4 py-14 text-[#252525] sm:px-6 sm:py-16 md:px-[5vw] md:py-24 lg:py-28"
       style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
     >
       <div className="mx-auto w-full max-w-[1120px]">
-        <header className="relative z-10 mx-auto mb-[66px] max-w-[780px] text-left md:mb-28 md:text-center">
-          <h2 id="continuity-steps-heading" className="text-[clamp(34px,4.1vw,48px)] font-bold leading-[1.1] tracking-[-.055em] text-[#252525]">
+        <header className="relative z-10 mx-auto mb-14 max-w-[780px] text-left sm:mb-16 md:mb-24 md:text-center">
+          <h2 id="continuity-steps-heading" className="text-[clamp(30px,5vw,48px)] font-bold leading-[1.1] tracking-[-.055em] text-[#252525]">
             Turn Knowledge Into Continuity.
           </h2>
           <p className="mx-auto mt-4 max-w-[690px] text-[15px] font-normal leading-[1.75] text-[#252525]/75 md:mt-5 md:text-base">
@@ -177,9 +186,9 @@ export default function ContinuitySteps() {
               ))}
             </svg>
           )}
-          <ol ref={listRef} className="relative z-[1] flex list-none flex-col gap-[106px] p-0 md:gap-[clamp(280px,40vh,380px)] md:px-[8%]">
+          <ol ref={listRef} className="relative z-[1] flex list-none flex-col gap-[76px] p-0 sm:gap-24 md:gap-[clamp(180px,24vh,280px)] md:px-[8%]">
             {steps.map((step, index) => (
-              <StepCard key={step.number} step={step} index={index} progress={progress} reduced={reduced} />
+              <StepCard key={step.number} step={step} index={index} progress={progress} reduced={reduced} desktop={desktop} />
             ))}
           </ol>
         </div>
