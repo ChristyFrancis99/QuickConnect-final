@@ -232,7 +232,7 @@
   font-weight: 550;
   letter-spacing: -0.01em;
   text-decoration: none;
-  transition: all 180ms ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .desktop-nav a:hover,
 .header-login:hover {
@@ -260,7 +260,7 @@
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(198, 154, 77, 0.28);
-  transition: all 180ms ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .header-cta:hover {
   transform: translateY(-1px);
@@ -277,7 +277,7 @@
   background: transparent;
   color: var(--qc-charcoal);
   cursor: pointer;
-  transition: all 180ms ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .mobile-menu-toggle:hover {
   border-color: var(--qc-gold);
@@ -309,7 +309,7 @@
   font-size: 14.5px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 180ms ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .mobile-nav > a:hover,
 .mobile-nav__actions > a:not(.header-cta):hover {
@@ -399,7 +399,7 @@
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  transition: all 180ms ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .hero-button:hover { transform: translateY(-2px); }
 .hero-button:focus-visible {
@@ -807,7 +807,7 @@
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  transition: all 180ms ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .qc-button:hover { transform: translateY(-2px); }
 .qc-button--gold {
