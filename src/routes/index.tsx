@@ -56,7 +56,7 @@ function Index() {
 
           <div className="header-actions">
             <a className="header-login" href="/login">Log In</a>
-            <a className="header-cta" href="/dashboard">Get Started <ArrowRight size={14} /></a>
+            <a className="header-cta" href="/login">Get Started <ArrowRight size={14} /></a>
           </div>
 
           <button
@@ -79,7 +79,7 @@ function Index() {
             <a href="#about" onClick={closeMenu}>About</a>
             <div className="mobile-nav__actions">
               <a href="/login" onClick={closeMenu}>Log In</a>
-              <a className="header-cta" href="/dashboard" onClick={closeMenu}>Get Started <ArrowRight size={14} /></a>
+              <a className="header-cta" href="/login" onClick={closeMenu}>Get Started <ArrowRight size={14} /></a>
             </div>
           </nav>
         )}
