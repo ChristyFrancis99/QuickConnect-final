@@ -508,7 +508,7 @@ export default function HandoverSection() {
             position: sticky;
             top: calc(var(--qc-nav-height) + 8px);
             z-index: 5;
-            padding: 0 132px 12px 0;
+            padding: 0 clamp(104px, 34vw, 132px) 12px 0;
             margin-bottom: 24px;
             background: #F5F4F0;
           }
@@ -527,8 +527,8 @@ export default function HandoverSection() {
             position: absolute;
             top: 0;
             right: 0;
-            width: 116px;
-            height: 92px;
+            width: clamp(92px, 30vw, 116px);
+            height: clamp(76px, 24vw, 92px);
             margin: 0;
             border-width: 3px;
             border-radius: 14px;
@@ -548,7 +548,7 @@ export default function HandoverSection() {
 
           .qc-handover__visual figcaption span {
             display: block;
-            font-size: 8px;
+            font-size: 8.5px;
             font-weight: 800;
             line-height: 1.25;
           }
@@ -593,7 +593,7 @@ export default function HandoverSection() {
           }
         }
 
-        @media (prefers-reduced-motion: reduce) {
+        @media (prefers-reduced-motion: reduce) and (min-width: 769px) {
           .qc-handover__intro {
             position: relative;
             top: auto;
