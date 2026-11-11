@@ -642,7 +642,7 @@ export default function PlatformSection() {
           font-size: 11px;
           font-weight: 700;
           text-decoration: none;
-          transition: transform .25s ease, box-shadow .25s ease;
+          transition: transform .25s ease, opacity .25s ease;
         }
 
         .qcp__learn:hover {
