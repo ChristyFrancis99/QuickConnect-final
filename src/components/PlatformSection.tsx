@@ -296,20 +296,6 @@ export default function PlatformSection() {
           into one connected workspace. From the first task to the final
           handover, everyone gets the context they need to keep work moving.
         </p>
-        <div className="qcp__value-points" aria-label="What your team gains">
-          <div className="qcp__value-point">
-            <span className="qcp__value-number">01</span>
-            <div><strong>Find the full picture</strong><span>Keep files, decisions, and updates connected to each project.</span></div>
-          </div>
-          <div className="qcp__value-point">
-            <span className="qcp__value-number">02</span>
-            <div><strong>Know what happens next</strong><span>Make ownership, progress, and pending actions easier to see.</span></div>
-          </div>
-          <div className="qcp__value-point">
-            <span className="qcp__value-number">03</span>
-            <div><strong>Make transitions smoother</strong><span>Pass work forward with the context and resources people need.</span></div>
-          </div>
-        </div>
       </div>
 
       <ol ref={stackRef} className="qcp__stack">
@@ -389,57 +375,6 @@ export default function PlatformSection() {
           font-size: 16px;
           line-height: 1.8;
           font-weight: 400;
-        }
-
-        .qcp__value-points {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 18px;
-          margin: 34px auto 0;
-          text-align: left;
-        }
-
-        .qcp__value-point {
-          display: flex;
-          align-items: flex-start;
-          gap: 11px;
-          min-width: 0;
-          padding: 15px 14px;
-          border: 1px solid rgba(37,37,37,.09);
-          border-radius: 14px;
-          background: rgba(255,255,255,.58);
-        }
-
-        .qcp__value-number {
-          display: grid;
-          width: 27px;
-          height: 27px;
-          flex: 0 0 27px;
-          place-items: center;
-          border-radius: 50%;
-          background: rgba(198,154,77,.16);
-          color: #8d682b;
-          font-size: 9px;
-          font-weight: 800;
-        }
-
-        .qcp__value-point div {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-        }
-
-        .qcp__value-point strong {
-          color: var(--qc-charcoal);
-          font-size: 11px;
-          line-height: 1.35;
-          font-weight: 700;
-        }
-
-        .qcp__value-point div span {
-          color: #77736c;
-          font-size: 10px;
-          line-height: 1.5;
         }
 
         .qcp__stack {
@@ -718,19 +653,6 @@ export default function PlatformSection() {
           .qcp__intro { margin-bottom: 45px; }
           .qcp__intro h2 br { display: none; }
           .qcp__intro p { font-size: 14px; }
-
-          .qcp__value-points {
-            grid-template-columns: 1fr;
-            gap: 9px;
-            margin-top: 24px;
-          }
-
-          .qcp__value-point {
-            padding: 12px 13px;
-          }
-
-          .qcp__value-point strong { font-size: 12px; }
-          .qcp__value-point div span { font-size: 11px; }
 
           .qcp__stack { padding-bottom: 0; }
 
