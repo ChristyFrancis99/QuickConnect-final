@@ -71,11 +71,11 @@ function StepCard({ step, index, progress, reduced, desktop }: { step: Step; ind
   const appear = start + 0.115;
   const settle = start + 0.205;
   const sideOffset = desktop ? (step.side === "right" ? 28 : -28) : 0;
-  const opacity = useTransform(progress, [start, appear, settle], [0, 0.15, 1]);
-  const y = useTransform(progress, [start, appear, settle], [60, 30, 0]);
+  const opacity = useTransform(progress, [start, appear, settle], [0.5, 0.75, 1]);
+  const y = useTransform(progress, [start, appear, settle], desktop ? [60, 30, 0] : [16, 8, 0]);
   const x = useTransform(progress, [start, appear, settle], [sideOffset, sideOffset * 0.45, 0]);
   const scale = useTransform(progress, [start, appear, settle], [0.94, 0.97, 1]);
-  const rotate = useTransform(progress, [start, appear, settle], [step.tilt - 2, step.tilt - 0.8, step.tilt]);
+  const rotate = useTransform(progress, [start, appear, settle], desktop ? [step.tilt - 2, step.tilt - 0.8, step.tilt] : [0, 0, 0]);
 
   return (
     <motion.li
@@ -89,7 +89,7 @@ function StepCard({ step, index, progress, reduced, desktop }: { step: Step; ind
           <Pin progress={progress} index={index} reduced={reduced} />
           <div className="pt-10">
             <h3 id={"continuity-step-" + step.number} className="text-[23px] font-semibold leading-tight tracking-[-.04em] text-[#252525] md:text-2xl">{step.title}</h3>
-            <p className="mt-[13px] text-[15.5px] font-normal leading-[1.7] text-[#252525]/75">{step.description}</p>
+            <p className="mt-[13px] text-[15.5px] font-normal leading-[1.7] text-[#4f4a42]">{step.description}</p>
           </div>
         </div>
       </article>
@@ -99,7 +99,7 @@ function StepCard({ step, index, progress, reduced, desktop }: { step: Step; ind
 
 function ConnectorLine({ path, index, progress, reduced }: { path: string; index: number; progress: MotionValue<number>; reduced: boolean }) {
   const start = index * 0.235 + 0.205;
-  const pathLength = useTransform(progress, [start, start + 0.105], [0, 1]);
+  const opacity = useTransform(progress, [start, start + 0.105], [0.2, 0.72]);
   return (
     <motion.path
       d={path}
@@ -168,7 +168,7 @@ export default function ContinuitySteps() {
           <h2 id="continuity-steps-heading" className="text-[clamp(30px,5vw,48px)] font-bold leading-[1.1] tracking-[-.055em] text-[#252525]">
             Turn Knowledge Into Continuity.
           </h2>
-          <p className="mx-auto mt-4 max-w-[690px] text-[15px] font-normal leading-[1.75] text-[#252525]/75 md:mt-5 md:text-base">
+          <p className="mx-auto mt-4 max-w-[690px] text-[15px] font-normal leading-[1.75] text-[#4f4a42] md:mt-5 md:text-base">
             QuickConnect brings scattered project knowledge together and transforms it into structured, actionable handovers.
           </p>
         </header>
