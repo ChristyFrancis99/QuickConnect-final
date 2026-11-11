@@ -47,7 +47,7 @@ function measureConnectors(list: HTMLOListElement): Connector {
   return { paths, width: list.clientWidth, height: list.clientHeight };
 }
 
-function Pin({ progress, index, reduced }: { progress: MotionValue<number>; index: number; reduced: boolean }) {
+function Pin({ progress, index, reduced, desktop }: { progress: MotionValue<number>; index: number; reduced: boolean; desktop: boolean }) {
   const start = index * 0.235 + 0.075;
   const y = useTransform(progress, [start, start + 0.035, start + 0.07], [-25, 4, 0]);
   const scale = useTransform(progress, [start, start + 0.035, start + 0.07], [0.55, 1.08, 1]);
@@ -60,7 +60,7 @@ function Pin({ progress, index, reduced }: { progress: MotionValue<number>; inde
         background: "radial-gradient(circle at 31% 24%,rgba(255,255,255,.98) 0 5%,rgba(255,255,255,.5) 7% 13%,transparent 25%),radial-gradient(circle at 38% 30%,#fff4d9 0," + steps[index].pin + " 35%,#8f672f 100%)",
         y: reduced ? 0 : y,
         scale: reduced ? 1 : scale,
-        rotate: reduced ? 0 : rotate,
+        rotate: reduced || !desktop ? 0 : rotate,
       }}
     />
   );
@@ -86,7 +86,7 @@ function StepCard({ step, index, progress, reduced, desktop }: { step: Step; ind
       <article className="rounded-[28px] border border-[#8F744C]/[0.12] bg-white/95 p-[14px] shadow-[0_18px_48px_rgba(91,72,43,.105),0_3px_10px_rgba(91,72,43,.055)]" aria-labelledby={"continuity-step-" + step.number}>
         <div className="relative flex min-h-[280px] flex-col justify-between rounded-[20px] px-[25px] py-[27px]" style={{ backgroundColor: step.tint }}>
           <span className="text-[48px] font-light leading-none tracking-[-.08em]" style={{ color: step.accent }}>{step.number}</span>
-          <Pin progress={progress} index={index} reduced={reduced} />
+          <Pin progress={progress} index={index} reduced={reduced} desktop={desktop} />
           <div className="pt-10">
             <h3 id={"continuity-step-" + step.number} className="text-[23px] font-semibold leading-tight tracking-[-.04em] text-[#252525] md:text-2xl">{step.title}</h3>
             <p className="mt-[13px] text-[15.5px] font-normal leading-[1.7] text-[#4f4a42]">{step.description}</p>
