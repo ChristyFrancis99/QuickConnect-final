@@ -102,7 +102,7 @@
 - [ ] Add loading, empty, error, and retry states for all live workflows.
 - [ ] Add automated tests for role permissions, handover lifecycle, source ingestion, AI evaluation, and verification.
 - [ ] Add observability, structured logs, and safe error reporting.
-- [ ] Add deployment configuration, environment documentation, and backup/recovery plan.
+- [x] Add initial Netlify/Nitro deployment configuration, baseline security/cache headers, and CI checks (configuration committed; execution/deploy verification pending).\n- [ ] Add a backup/recovery plan after server-side persistence is selected.
 - [ ] Review privacy, data retention, consent, and security before using real company data.
 
 ## 4. Current limitations — do not mistake these for completed features
@@ -185,6 +185,14 @@ Copy this template into the session log after each build session:
 ```
 
 ## 7. Session log
+
+### 2026-11-11 — Initial deployment hardening
+- **Completed:** Added a Netlify deployment manifest for the existing Nitro adapter, selected Node.js 22 and the Netlify Nitro preset, configured baseline security headers and immutable caching for fingerprinted Vite assets, added a GitHub Actions lint/test/build workflow, and documented the correct SSR deployment flow and prototype limitations. Removed the root-level static catch-all redirect that could send application routes to a non-existent `index.html` in a server-rendered deployment.
+- **Still pending:** The workflow and Netlify deployment have not been executed from this session. Build output and host configuration must be verified in the first Netlify deploy preview. Large source PNGs still need WebP/AVIF conversion and visual comparison. The app remains a demo: auth, database persistence, server-side RBAC, source integrations, and AI processing are not production implementations.
+- **Files changed:** `netlify.toml`, `.github/workflows/ci.yml`, `README.md`, `docs/IMPLEMENTED-VS-PENDING.md`; deleted `_redirects`.
+- **Checks:** Repository source/configuration review only. No local install, lint, tests, production build, or live Netlify deploy was run in this session.
+- **Decisions / blockers:** Kept the existing `nitro/vite` adapter instead of adding a second Netlify adapter. Configured the Netlify Nitro preset with `dist` as the publish directory; do not replace it with the static-SPA `dist/client` setup unless the app is migrated to Netlify's dedicated TanStack Start Vite plugin. Do not add a catch-all `/* /index.html 200` rewrite to this SSR app.
+- **Next action:** Push the changes, inspect the GitHub Actions run and Netlify deploy log, then verify direct URL refreshes for `/`, `/login`, `/dashboard`, and a valid `/:section` route.
 
 ### 2026-11-10 — Knowledge Verification Workspace
 - **Completed:** Repaired the existing assessment implementation instead of replacing it. Assessments now retain handover/project/member associations, typed question points and topics, response marks/review metadata, safe per-record localStorage validation, editable pre-submission answers, duplicate-submission protection, marks-based scoring, clarification-driven improvement status, manager review updates, and readiness progress derived from assessment answers.
