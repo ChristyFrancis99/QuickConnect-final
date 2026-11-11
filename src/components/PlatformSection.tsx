@@ -654,15 +654,17 @@ export default function PlatformSection() {
           .qcp__intro h2 br { display: none; }
           .qcp__intro p { font-size: 14px; }
 
-          .qcp__stack { padding-bottom: 0; }
+          /* Keep the same scroll-linked sticky card stack on phones.
+             Only the card's internal layout changes to fit the narrow screen. */
+          .qcp__stack { padding-bottom: 30svh; }
 
           .qcp__card-slot {
-            position: relative;
-            top: auto;
+            position: sticky;
+            top: calc(var(--qc-nav-height) + 12px);
             height: auto;
             min-height: 0;
-            margin-bottom: 20px;
-            perspective: none;
+            margin-bottom: 30svh;
+            perspective: 1200px;
           }
 
           .qcp__card {
@@ -670,8 +672,6 @@ export default function PlatformSection() {
             min-height: 0;
             padding: 25px;
             border-radius: 20px;
-            transform: none !important;
-            filter: none !important;
           }
 
           .qcp__card-heading { gap: 13px; }
