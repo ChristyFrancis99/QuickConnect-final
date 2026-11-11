@@ -164,7 +164,7 @@
   align-items: center;
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms ease;
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .hero-header.is-scrolled {
@@ -192,7 +192,7 @@
   padding: 6px 8px;
   color: var(--qc-charcoal);
   text-decoration: none;
-  transition: all 180ms ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .brand-lockup:hover {
   background: rgba(198, 154, 77, 0.1);
@@ -907,7 +907,7 @@
   color: rgba(245, 244, 240, 0.65);
   font-size: 13px;
   text-decoration: none;
-  transition: color 180ms ease;
+  transition: opacity 180ms ease;
 }
 .qc-footer-links a:hover {
   color: var(--qc-gold);
