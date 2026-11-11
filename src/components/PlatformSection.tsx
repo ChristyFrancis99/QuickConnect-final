@@ -667,8 +667,8 @@ export default function PlatformSection() {
           .qcp__intro h2 br { display: none; }
           .qcp__intro p { font-size: 14px; }
 
-          /* Keep the same scroll-linked sticky card stack on phones.
-             Only the card's internal layout changes to fit the narrow screen. */
+          /* Simplified shared sticky stack: cards overlap at one top offset
+             without 3D tilt or extra scroll space. */
           .qcp__stack { padding-bottom: 0; }
 
           .qcp__card-slot {
