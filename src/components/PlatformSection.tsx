@@ -318,6 +318,7 @@ export default function PlatformSection() {
             index={index}
             progress={scrollYProgress}
             reducedMotion={Boolean(reducedMotion)}
+            mobile={mobile}
           />
         ))}
       </ol>
