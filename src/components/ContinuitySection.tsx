@@ -466,7 +466,7 @@ export default function ContinuitySection({ onViewClick }: ContinuitySectionProp
           height: 5px;
           border-radius: 99px;
           background: rgba(37, 37, 37, .28);
-          transition: width .2s ease, background-color .2s ease;
+          transition: opacity .2s ease;
         }
 
         .qc-continuity__dots span.is-active {
@@ -601,15 +601,18 @@ export default function ContinuitySection({ onViewClick }: ContinuitySectionProp
 
           .qc-continuity__mobile-pagination span.is-active {
             width: 20px;
-            background: var(--qc-charcoal);
+            opacity: 1;
           }
+
+          .qc-continuity__dots { display: none; }
 
           .qc-continuity__list {
             display: flex;
             gap: 14px;
             overflow-x: auto;
             padding: 12px 22px 22px;
-            scroll-snap-type: x mandatory;\n            touch-action: pan-x pan-y;
+            scroll-snap-type: x mandatory;
+            touch-action: pan-x pan-y;
             scroll-padding-inline: 22px;
             overscroll-behavior-x: contain;
             scrollbar-width: none;
