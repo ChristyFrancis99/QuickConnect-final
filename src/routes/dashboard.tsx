@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { AppShell } from "@/components/qc/AppShell";
 import { DashboardMain } from "@/components/qc/Dashboard";
 import { useAuth } from "@/lib/auth-store";
@@ -16,7 +17,17 @@ export const Route = createFileRoute("/dashboard")({
 });
 
 function Index() {
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate({ to: "/login", replace: true });
+    }
+  }, [isAuthenticated, navigate]);
+
+  if (!isAuthenticated) return null;
+
   return (
     <AppShell
       active="dashboard"
