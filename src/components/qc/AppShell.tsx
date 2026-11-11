@@ -29,13 +29,13 @@ const icons = {
 
 function Logo() {
   return (
-    <div className="flex items-center gap-2.5">
+    <Link to="/" aria-label="Return to QuickConnect home" className="flex items-center gap-2.5 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring">
       <span className="grid h-9 w-9 place-items-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground"><Link2 className="h-5 w-5" /></span>
       <div>
         <p className="text-base font-bold text-sidebar-accent-foreground">QuickConnect</p>
         <p className="text-[10px] text-sidebar-foreground/70">Connect Knowledge. Continue Work.</p>
       </div>
-    </div>
+    </Link>
   );
 }
 
