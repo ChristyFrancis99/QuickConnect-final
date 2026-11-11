@@ -146,7 +146,7 @@ function GalleryPanels({
     <group>
       {panels.map((panel) => (
         <mesh
-          key={panel.index}
+          key={`panel-${rows}-${panel.index}`}
           ref={(mesh) => {
             meshes.current[panel.index] = mesh;
           }}
