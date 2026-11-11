@@ -683,8 +683,9 @@ export default function PlatformSection() {
           .qcp__card {
             height: auto;
             min-height: 0;
-            padding: 25px;
+            padding: 20px;
             border-radius: 20px;
+            max-height: calc(100svh - var(--qc-nav-height) - 16px);
           }
 
           .qcp__card-heading { gap: 13px; }
@@ -697,10 +698,10 @@ export default function PlatformSection() {
           }
 
           .qcp__card h3 { font-size: 22px; }
-          .qcp__card-content { margin-top: 24px; }
+          .qcp__card-content { margin-top: 16px; }
           .qcp__card-content { max-width: 100%; padding-bottom: 0; }
           .qcp__card-content p { font-size: 14px; }
-          .qcp__highlights { margin-top: 20px; }
+          .qcp__highlights { margin-top: 14px; }
           .qcp__highlight-list { gap: 7px; }
           .qcp__highlight { padding: 8px 10px; font-size: 9px; }
           .qcp__visual-panel {
@@ -713,13 +714,13 @@ export default function PlatformSection() {
             margin-top: 22px;
           }
           .qcp__visual-image { animation: none; }
-          .qcp__card-meta { margin-top: 22px; }
+          .qcp__card-meta { margin-top: 14px; }
           .qcp__learn { position: relative; right: auto; bottom: auto; align-self: flex-start; margin-top: 16px; }
 
           .qcp__card-bottom {
             align-items: flex-start;
             flex-direction: column;
-            margin-top: 28px;
+            margin-top: 18px;
           }
 
           .qcp__preview-wrap {
