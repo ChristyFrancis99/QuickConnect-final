@@ -544,7 +544,7 @@
 .qc-section { position: relative; padding: clamp(80px, 9vw, 130px) 0; }
 .qc-container { width: min(100% - 80px, 1200px); margin-inline: auto; }
 .qc-problem { background: var(--color-background); }
-.qc-solution { background: #F4E9D5; }
+.qc-solution { background: var(--qc-off-white); }
 .qc-section-heading { max-width: 760px; margin-bottom: 50px; }
 .qc-section-heading--center { margin-inline: auto; text-align: center; }
 .qc-eyebrow {
@@ -755,7 +755,7 @@
   place-items: center;
   overflow: hidden;
   padding: clamp(96px, 11vw, 140px) 24px;
-  background: var(--qc-cream);
+  background: var(--qc-off-white);
   text-align: center;
 }
 .qc-cta-content {
