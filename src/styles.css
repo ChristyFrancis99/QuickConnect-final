@@ -1089,3 +1089,210 @@
     transform: none;
   }
 }
+
+
+/* ----------------------------------------------------
+   Cross-device and Android responsive refinements
+---------------------------------------------------- */
+html {
+  width: 100%;
+  min-height: 100%;
+  scroll-padding-top: var(--qc-nav-height);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  overflow-x: clip;
+}
+#root {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: clip;
+}
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+button, [role="button"], a {
+  -webkit-tap-highlight-color: transparent;
+}
+:focus-visible {
+  scroll-margin-block: 6rem;
+}
+@supports (padding: max(0px)) {
+  .hero-header {
+    padding-top: env(safe-area-inset-top);
+  }
+  .mobile-nav {
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+  .qc-footer {
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 767px) {
+  html, body {
+    overscroll-behavior-x: none;
+  }
+  input, select, textarea {
+    font-size: 16px;
+  }
+  .hero-header__inner,
+  .hero-main,
+  .hero-footer,
+  .qc-container {
+    width: calc(100% - 32px);
+  }
+  .hero-header {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .hero-header__inner {
+    gap: 12px;
+  }
+  .brand-lockup {
+    min-width: 0;
+    max-width: calc(100vw - 92px);
+    padding-inline: 0;
+  }
+  .brand-logo {
+    max-width: min(200px, calc(100vw - 104px));
+    height: 40px;
+  }
+  .hero-main {
+    min-height: 0;
+    padding-top: calc(68px + env(safe-area-inset-top, 0px) + 22px);
+  }
+  .hero-copy {
+    max-width: 100%;
+  }
+  .hero-actions,
+  .qc-cta-actions {
+    width: 100%;
+  }
+  .hero-actions > a,
+  .qc-cta-actions > a {
+    flex: 1 1 auto;
+  }
+  .hero-visual {
+    max-width: min(100%, 460px);
+  }
+  .qc-section {
+    padding-block: clamp(56px, 10vw, 76px);
+  }
+  .qc-section-heading h2,
+  .qc-cta-content h2 {
+    overflow-wrap: anywhere;
+  }
+  .qc-footer-main {
+    gap: 32px;
+  }
+  .qc-footer-links {
+    min-width: 0;
+  }
+  .qc-footer-bottom span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .qc-pin-note__paper {
+    padding: 16px;
+  }
+  .qc-cta-section {
+    min-height: 0;
+  }
+  /* Keep wide data views usable without forcing the whole page wider. */
+  .overflow-x-auto {
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-inline: contain;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-header__inner,
+  .hero-main,
+  .hero-footer,
+  .qc-container {
+    width: calc(100% - 28px);
+  }
+  .brand-logo {
+    height: 36px;
+    max-width: calc(100vw - 100px);
+  }
+  .hero-title {
+    font-size: clamp(29px, 8.2vw, 35px);
+    overflow-wrap: anywhere;
+  }
+  .hero-eyebrow {
+    max-width: 100%;
+    font-size: 9px;
+    letter-spacing: .12em;
+  }
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .hero-actions .hero-button {
+    width: 100%;
+  }
+  .hero-support {
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .qc-footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-description,
+  .qc-section-copy,
+  .qc-cta-content > p:not(.qc-eyebrow) {
+    font-size: 13px;
+  }
+  .hero-footer__badge {
+    display: none;
+  }
+  .qc-footer-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Short Android landscape screens and compact tablets */
+@media (max-width: 900px) and (orientation: landscape) {
+  .hero-scroll-stage {
+    height: 180svh;
+  }
+  .hero-sticky {
+    min-height: 560px;
+    height: 100svh;
+  }
+  .hero-main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding-top: calc(68px + env(safe-area-inset-top, 0px));
+  }
+  .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .hero-visual {
+    grid-column: 2;
+    grid-row: 1;
+    width: min(100%, 58svh);
+    min-height: 0;
+  }
+  .hero-title {
+    font-size: clamp(28px, 5vw, 40px);
+  }
+  .hero-description {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
