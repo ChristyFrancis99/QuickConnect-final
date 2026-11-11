@@ -78,7 +78,7 @@ export default function ProblemSection() {
   return <section id="problem" className="qc-problem" aria-labelledby="qc-problem-title"
     onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={onBlur}>
     <style>{`
-      .qc-problem{--qc-gold:#C69A4D;--qc-lavender:#7785C5;--qc-cream:#F4E9D5;--qc-off-white:#F5F4F0;--qc-charcoal:#252525;width:100%;padding:clamp(72px,9vw,120px) 24px;color:var(--qc-charcoal);font-family:"Plus Jakarta Sans",sans-serif;background:transparent}
+      .qc-problem{--qc-gold:#C69A4D;--qc-lavender:#7785C5;--qc-cream:#F4E9D5;--qc-off-white:#F5F4F0;--qc-charcoal:#252525;width:100%;padding:clamp(72px,9vw,120px) 24px;color:var(--qc-charcoal);font-family:"Plus Jakarta Sans",sans-serif;background:#F5F4F0}
       .qc-problem *,.qc-problem *:before,.qc-problem *:after{box-sizing:border-box}
       .qc-problem__inner{width:min(100%,1180px);margin:0 auto}
       .qc-problem__header{display:flex;align-items:flex-end;justify-content:space-between;gap:36px;margin-bottom:44px}
