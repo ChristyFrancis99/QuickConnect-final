@@ -341,6 +341,7 @@ export default function PlatformSection() {
           color: var(--qc-charcoal);
           font-family: "Plus Jakarta Sans", sans-serif;
           scroll-margin-top: 20px;
+          background: #F5F4F0;
         }
 
         .qcp *,
