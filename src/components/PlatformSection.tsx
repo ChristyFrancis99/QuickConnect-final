@@ -1,4 +1,12 @@
 import { useRef, type CSSProperties } from "react";
+import image1 from "@/assets/sections/1.png";
+import image2 from "@/assets/sections/2.png";
+import image3 from "@/assets/sections/3.png";
+import image4 from "@/assets/sections/4.png";
+import image5 from "@/assets/sections/5.png";
+import image6 from "@/assets/sections/6.png";
+import image7 from "@/assets/sections/7.png";
+import image8 from "@/assets/sections/8.png";
 import {
   motion,
   useReducedMotion,
@@ -27,7 +35,7 @@ const platformCards = [
     background: "#C69A4D",
     foreground: "#252525",
     icon: FolderKanban,
-    image: "01.png",
+    image: image1,
     imageAlt: "Project dashboard with task list, timeline, and milestone overview",
     highlights: ["Tasks & milestones", "Clear ownership", "Deadline visibility"],
   },
@@ -38,7 +46,7 @@ const platformCards = [
     background: "#7785C5",
     foreground: "#252525",
     icon: Files,
-    image: "02.png",
+    image: image2,
     imageAlt: "Knowledge library with connected project documents and resources",
     highlights: ["Central file library", "Connected references", "Quick document access"],
   },
@@ -49,7 +57,7 @@ const platformCards = [
     background: "#252525",
     foreground: "#FFFFFF",
     icon: BrainCircuit,
-    image: "03.png",
+    image: image3,
     imageAlt: "AI analysis summary highlighting decisions and open questions",
     highlights: ["Key decisions", "Progress summaries", "Open questions"],
   },
@@ -60,7 +68,7 @@ const platformCards = [
     background: "#A87E36",
     foreground: "#171717",
     icon: ClipboardList,
-    image: "04.png",
+    image: image4,
     imageAlt: "Structured handover record showing responsibilities and next steps",
     highlights: ["Role responsibilities", "Pending actions", "Essential context"],
   },
@@ -71,7 +79,7 @@ const platformCards = [
     background: "#5A67A6",
     foreground: "#FFFFFF",
     icon: ShieldCheck,
-    image: "05.png",
+    image: image5,
     imageAlt: "Verification checklist with reviewed and outstanding items",
     highlights: ["File completeness", "Details reviewed", "Owner confirmation"],
   },
@@ -83,7 +91,7 @@ const platformCards = [
     foreground: "#252525",
     border: true,
     icon: Gauge,
-    image: "06.png",
+    image: image6,
     imageAlt: "Readiness dashboard with progress ring and completion indicators",
     highlights: ["Completion overview", "Outstanding items", "Review status"],
   },
@@ -94,7 +102,7 @@ const platformCards = [
     background: "#E3C98F",
     foreground: "#252525",
     icon: Users,
-    image: "07.png",
+    image: image7,
     imageAlt: "Team directory showing project roles and collaborators",
     highlights: ["Team directory", "Role visibility", "Project contacts"],
   },
@@ -105,7 +113,7 @@ const platformCards = [
     background: "#EADBBE",
     foreground: "#252525",
     icon: Activity,
-    image: "08.png",
+    image: image8,
     imageAlt: "Activity timeline showing project updates and handover reviews",
     highlights: ["Recent changes", "Resource updates", "Review history"],
   },
@@ -237,7 +245,7 @@ function PlatformCard({
         <div className="qcp__visual-panel">
           <img
             className="qcp__visual-image"
-            src={`/images/platform/${item.image}`}
+            src={item.image}
             alt={item.imageAlt}
             loading="lazy"
             decoding="async"
