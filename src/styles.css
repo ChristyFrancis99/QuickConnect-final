@@ -1128,7 +1128,6 @@ body {
   width: 100%;
   min-width: 320px;
   min-height: 100%;
-  overflow-x: clip;
 }
 #root {
   width: 100%;
@@ -1398,5 +1397,64 @@ button, [role="button"], a {
     min-height: 0;
     height: auto;
     align-content: flex-start;
+  }
+}
+
+/* Mobile scroll containment: clip only at the app root and hero boundary.
+   overflow: clip does not create a scroll container, so sticky sections remain functional. */
+@media (max-width: 768px) {
+  .hero-scroll-stage {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .hero-sticky {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    overflow: clip;
+    isolation: isolate;
+  }
+
+  .hero-main {
+    grid-template-rows: auto auto;
+    align-content: start;
+  }
+
+  .hero-visual {
+    position: relative;
+    min-height: clamp(220px, 64vw, 300px);
+    height: auto;
+    padding-bottom: 28px;
+    overflow: clip;
+    isolation: isolate;
+  }
+
+  .globe-interaction {
+    inset: 0 0 24px;
+    max-width: 100%;
+    overflow: clip;
+  }
+
+  .globe-canvas-expansion,
+  .globe-canvas {
+    max-width: 100%;
+  }
+
+  .hero-footer {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    min-height: 44px;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-visual {
+    min-height: clamp(210px, 60vw, 260px);
+    padding-bottom: 30px;
   }
 }
