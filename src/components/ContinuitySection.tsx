@@ -347,7 +347,7 @@ export default function ContinuitySection({ onViewClick }: ContinuitySectionProp
           border-radius: 24px;
           background: var(--qc-off-white);
           box-shadow: 0 10px 40px rgba(198, 154, 77, .15);
-          transition: box-shadow .25s ease;
+          transition: opacity .25s ease;
         }
 
         .qc-continuity__card:hover .qc-continuity__frame {
@@ -365,7 +365,7 @@ export default function ContinuitySection({ onViewClick }: ContinuitySectionProp
           overflow: hidden;
           border-radius: 18px;
           background: var(--qc-card-tint);
-          transition: filter .25s ease, background-color .25s ease;
+          transition: filter .25s ease, opacity .25s ease;
         }
 
         .qc-continuity__panel::after {
@@ -534,7 +534,7 @@ export default function ContinuitySection({ onViewClick }: ContinuitySectionProp
           font-size: 12px;
           font-weight: 700;
           cursor: pointer;
-          transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease;
+          transition: transform .2s ease, opacity .2s ease;
         }
 
         .qc-continuity__view:hover {
