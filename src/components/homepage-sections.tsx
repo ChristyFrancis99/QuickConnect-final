@@ -13,15 +13,20 @@ function Reveal({ children, className = "" }: { children: ReactNode; className?:
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      typeof IntersectionObserver === "undefined"
+    ) {
       element.classList.add("is-visible");
       return;
     }
     const observer = new IntersectionObserver(
       ([entry]) => {
-        element.classList.toggle("is-visible", Boolean(entry?.isIntersecting));
+        if (!entry?.isIntersecting) return;
+        element.classList.add("is-visible");
+        observer.disconnect();
       },
-      { threshold: 0.14, rootMargin: "0px 0px -35px 0px" },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
     );
     observer.observe(element);
     return () => observer.disconnect();
