@@ -44,7 +44,7 @@ function SidebarBody({ active, dark, setDark, onNav }: { active: string; dark: b
   return (
     <div className="flex h-full flex-col gap-6 bg-sidebar p-5 text-sidebar-foreground">
       <Logo />
-      <nav className="flex-1 space-y-1 overflow-y-auto">
+      <nav className="flex-1 space-y-1 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {navItems.filter((item) => roleNavigation[roleCategory]?.includes(item.slug)).map((n) => {
           const Icon = icons[n.slug];
           const cls = cn(
