@@ -188,7 +188,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     saveSession(matchedPerson, true);
 
-    const redirectRoute = ROLE_DEFINITIONS[actualRole]?.route || "/";
+    const redirectRoute = "/dashboard";
 
     return {
       success: true,
@@ -207,7 +207,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       : personById(DEFAULT_USER_ID);
 
     saveSession(targetMember, true);
-    const redirectRoute = targetDef ? targetDef.route : "/";
+    const redirectRoute = "/dashboard";
     return { success: true, redirectRoute };
   };
 
