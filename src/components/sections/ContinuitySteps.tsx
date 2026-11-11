@@ -108,8 +108,7 @@ function ConnectorLine({ path, index, progress, reduced }: { path: string; index
       strokeWidth="1.7"
       strokeLinecap="round"
       strokeDasharray="6 8"
-      pathLength={reduced ? 1 : pathLength}
-      opacity={0.72}
+      opacity={reduced ? 0.72 : opacity}
     />
   );
 }
