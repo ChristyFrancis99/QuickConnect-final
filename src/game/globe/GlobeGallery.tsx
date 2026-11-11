@@ -127,7 +127,8 @@ function GalleryPanels({
       const material = materials.current[panel.index];
       if (!mesh || !material) return;
 
-      const motion = getPanelMotion(panel.index, reducedMotion.current ? 0 : progress.get());
+      const isMobile = size.width <= 768;
+      const motion = getPanelMotion(panel.index, reducedMotion.current || isMobile ? 0 : progress.get());
       mesh.position.set(
         panel.position.x + motion.x,
         panel.position.y + motion.y,
