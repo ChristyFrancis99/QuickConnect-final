@@ -37,7 +37,7 @@ export default function ProblemSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [paused, setPaused] = useState(false);
-  const [mobile, setMobile] = useState(() => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches);
+  const [mobile, setMobile] = useState(() => typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches);
   const reduceMotion = useReducedMotion();
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   const reduced = reduceMotion ?? false;
@@ -51,10 +51,10 @@ export default function ProblemSection() {
   }, []);
 
   useEffect(() => {
-    if (reduced || hasInteracted || paused) return;
+    if (reduced || mobile || hasInteracted || paused) return;
     const timer = window.setInterval(() => setActiveIndex((i) => (i + 1) % cards.length), 4000);
     return () => window.clearInterval(timer);
-  }, [reduced, hasInteracted, paused]);
+  }, [reduced, mobile, hasInteracted, paused]);
 
   const choose = (index: number, userAction = false) => {
     setActiveIndex(index);
@@ -89,7 +89,7 @@ export default function ProblemSection() {
       .qc-problem__accent{display:inline;color:var(--qc-gold)}
       .qc-problem__intro{max-width:680px;margin:18px 0 0;color:rgba(37,37,37,.74);font-size:16px;line-height:1.75;font-weight:400}
       .qc-problem__cards{display:flex;gap:18px;width:100%;align-items:stretch}
-      .qc-problem-card{position:relative;display:flex;flex:1 1 0%;min-width:0;height:340px;overflow:hidden;padding:26px 24px;border:1.5px solid rgba(37,37,37,.09);border-radius:24px;background:#FFFFFF;color:var(--qc-charcoal);text-align:left;cursor:pointer;isolation:isolate;box-shadow:0 6px 20px rgba(37,37,37,.04);transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease}
+      .qc-problem-card{position:relative;display:flex;flex:1 1 0%;min-width:0;height:340px;overflow:hidden;padding:26px 24px;border:1.5px solid rgba(37,37,37,.09);border-radius:24px;background:#FFFFFF;color:var(--qc-charcoal);text-align:left;cursor:pointer;isolation:isolate;box-shadow:0 6px 20px rgba(37,37,37,.04);transition:transform .22s ease,opacity .22s ease}
       .qc-problem-card:hover{border-color:rgba(198,154,77,.45);box-shadow:0 10px 28px rgba(198,154,77,.12)}
       .qc-problem-card[data-active=true]{border-color:var(--qc-gold);background:#FFFFFF;box-shadow:0 16px 42px -6px rgba(198,154,77,.22),0 4px 14px rgba(37,37,37,.04)}
       .qc-problem-card:focus-visible{outline:3px solid var(--qc-lavender);outline-offset:4px}
