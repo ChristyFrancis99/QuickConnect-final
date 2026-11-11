@@ -61,60 +61,22 @@ function HandoverStep({
   const opacity = useTransform(
     progress,
     [segmentStart, segmentMiddle, segmentEnd],
-    index === 0 ? [1, 1, 0.55] : [0.28, 1, 0.55],
+    index === 0 ? [1, 1, 0.85] : [0.85, 1, 0.85],
   );
   const y = useTransform(
     progress,
     [segmentStart, segmentMiddle, segmentEnd],
-    index === 0 ? [0, 0, 0] : [12, 0, 0],
+    index === 0 ? [0, 0, 0] : [6, 0, 0],
   );
   const scale = useTransform(
     progress,
     [segmentStart, segmentMiddle, segmentEnd],
     index === 0 ? [1, 1, 1] : [0.98, 1, 1],
   );
-  const fillTarget = useTransform(
-    progress,
-    [segmentStart, segmentMiddle],
-    index === 0 ? [1, 1] : [0, 1],
-  );
-  const fill = useSpring(fillTarget, {
-    stiffness: 180,
-    damping: 24,
-    mass: 0.45,
-  });
-  const glowTarget = useTransform(
+  const nodeScale = useTransform(
     progress,
     [segmentStart, segmentMiddle, segmentEnd],
-    [0, 1, 0],
-  );
-  const glow = useSpring(glowTarget, {
-    stiffness: 180,
-    damping: 24,
-    mass: 0.45,
-  });
-  const nodeBackground = useTransform(fill, (value) =>
-    value > 0.5 ? "var(--qc-handover-gold)" : "transparent",
-  );
-  const nodeBorder = useTransform(fill, (value) =>
-    value > 0.5 ? "var(--qc-handover-gold)" : "rgba(37,37,37,0.25)",
-  );
-  const nodeColor = useTransform(fill, (value) =>
-    value > 0.5 ? "#FFFFFF" : "#77736C",
-  );
-  const nodeShadow = useTransform(
-    glow,
-    (value) => `0 0 0 ${6 * value}px rgba(198,154,77,${0.2 * value})`,
-  );
-  const descriptionOpacity = useTransform(
-    progress,
-    [segmentStart, segmentMiddle, segmentEnd],
-    index === 0 ? [0.7, 0.7, 0.55] : [0.28, 0.7, 0.55],
-  );
-  const textColor = useTransform(
-    progress,
-    [segmentStart, segmentMiddle, segmentEnd],
-    ["#77736C", "#252525", "#252525"],
+    [0.94, 1.06, 1],
   );
   const Icon = step.icon;
 
@@ -135,28 +97,14 @@ function HandoverStep({
       <motion.span
         className="qc-handover__node"
         aria-hidden="true"
-        style={
-          reducedMotion
-            ? {
-                backgroundColor: "var(--qc-handover-gold)",
-                borderColor: "var(--qc-handover-gold)",
-                color: "#FFFFFF",
-                boxShadow: "0 0 0 6px rgba(198,154,77,0.2)",
-              }
-            : {
-                backgroundColor: nodeBackground,
-                borderColor: nodeBorder,
-                color: nodeColor,
-                boxShadow: nodeShadow,
-              }
-        }
+        style={reducedMotion ? undefined : { scale: nodeScale }}
       >
         <span>{String(index + 1).padStart(2, "0")}</span>
       </motion.span>
 
       <motion.div
         className="qc-handover__step-card"
-        style={reducedMotion ? undefined : { color: textColor }}
+        
       >
         <div className="qc-handover__step-heading">
           <span className="qc-handover__icon-badge">
@@ -164,7 +112,7 @@ function HandoverStep({
           </span>
           <h3>{step.title}</h3>
         </div>
-        <motion.p style={reducedMotion ? undefined : { opacity: descriptionOpacity }}>{step.description}</motion.p>
+        <p>{step.description}</p>
       </motion.div>
     </motion.li>
   );
@@ -481,7 +429,7 @@ export default function HandoverSection() {
           font-size: 11px;
           font-weight: 700;
           line-height: 1;
-          transition: border-color .2s ease, box-shadow .2s ease;
+          transition: opacity .2s ease;
         }
 
         .qc-handover__step-card {
@@ -492,7 +440,7 @@ export default function HandoverSection() {
           background: #FFFFFF;
           border: 1.5px solid rgba(37,37,37,.08);
           box-shadow: 0 4px 18px rgba(37,37,37,.04);
-          transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+          transition: transform .25s ease, opacity .25s ease;
         }
 
         .qc-handover__step[aria-current="step"] .qc-handover__step-card {
@@ -533,7 +481,7 @@ export default function HandoverSection() {
           font-size: 15px;
           font-weight: 400;
           line-height: 1.7;
-          opacity: .75;
+          opacity: 1;\n          color: #4f4a42;
         }
 
         .qc-handover__sr-only {
@@ -546,7 +494,7 @@ export default function HandoverSection() {
           clip-path: inset(50%);
         }
 
-        @media (max-width: 760px) {
+        @media (max-width: 768px) {
           .qc-handover {
             padding: 76px 22px;
           }
@@ -556,15 +504,17 @@ export default function HandoverSection() {
           }
 
           .qc-handover__intro {
-            position: relative;
-            top: auto;
-            padding-top: 0;
-            margin-bottom: 42px;
+            position: sticky;
+            top: calc(var(--qc-nav-height) + 8px);
+            z-index: 5;
+            padding: 0 132px 12px 0;
+            margin-bottom: 24px;
+            background: #F5F4F0;
           }
 
           .qc-handover__intro h2 {
             max-width: 600px;
-            font-size: clamp(34px, 9vw, 44px);
+            font-size: clamp(29px, 7.2vw, 36px);
           }
 
           .qc-handover__subtext {
@@ -573,9 +523,42 @@ export default function HandoverSection() {
           }
 
           .qc-handover__visual {
-            width: 100%;
-            height: clamp(190px, 58vw, 250px);
-            margin-top: 26px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 116px;
+            height: 92px;
+            margin: 0;
+            border-width: 3px;
+            border-radius: 14px;
+          }
+
+          .qc-handover__visual::after {
+            inset: 20% 0 0;
+            background: linear-gradient(180deg, rgba(28,27,25,.04) 0%, rgba(28,27,25,.88) 100%);
+          }
+
+          .qc-handover__visual figcaption {
+            right: 6px;
+            bottom: 6px;
+            left: 6px;
+            display: block;
+          }
+
+          .qc-handover__visual figcaption span {
+            display: block;
+            font-size: 8px;
+            line-height: 1.25;
+          }
+
+          .qc-handover__visual figcaption a {
+            display: none;
+          }
+
+          .qc-handover__subtext {
+            max-width: 100%;
+            font-size: 13px;
+            line-height: 1.5;
           }
 
           .qc-handover__track {
