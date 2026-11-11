@@ -660,7 +660,7 @@ export default function PlatformSection() {
           outline-offset: 4px;
         }
 
-        @media (max-width: 760px) {
+        @media (max-width: 768px) {
           .qcp { padding: 75px 14px 5svh; }
           .qcp__intro { margin-bottom: 45px; }
           .qcp__intro h2 br { display: none; }
