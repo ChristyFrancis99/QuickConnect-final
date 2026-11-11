@@ -172,8 +172,7 @@ export default function ProblemSection() {
             onMouseEnter={()=>{setPaused(true);choose(index)}}
             onFocus={()=>setPaused(true)} onClick={()=>choose(index,true)}
             onKeyDown={event=>onKeyDown(event,index)}
-            animate={{ flexGrow: mobile ? 0 : active ? 2.2 : 1, height: mobile ? (active ? "auto" : 74) : 340 }}
-            transition={reduced?{duration:0}:{duration:.6,ease:[.22,1,.36,1]}}>
+            style={{ flexGrow: mobile ? 0 : active ? 2.2 : 1 }}>
             <span className="qc-problem-card__wash" /><div className="qc-problem-card__inner">
               <span className="qc-problem-card__top"><span className="qc-problem-card__index">{card.number}</span>
                 {!active&&<span className="qc-problem-card__small-action"><ArrowUpRight size={18}/></span>}
