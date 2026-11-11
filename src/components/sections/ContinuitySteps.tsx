@@ -176,7 +176,7 @@ export default function ContinuitySteps() {
         <div className="relative mx-auto w-full max-w-[1000px]">
           {connector.width > 0 && connector.height > 0 && (
             <svg
-              className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible"
+              className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full overflow-visible md:block"
               viewBox={"0 0 " + connector.width + " " + connector.height}
               preserveAspectRatio="none"
               aria-hidden="true"
