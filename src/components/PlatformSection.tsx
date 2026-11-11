@@ -1,4 +1,4 @@
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import image1 from "@/assets/sections/1.png";
 import image2 from "@/assets/sections/2.png";
 import image3 from "@/assets/sections/3.png";
@@ -147,11 +147,13 @@ function PlatformCard({
   index,
   progress,
   reducedMotion,
+  mobile,
 }: {
   item: PlatformCardData;
   index: number;
   progress: MotionValue<number>;
   reducedMotion: boolean;
+  mobile: boolean;
 }) {
   const total = platformCards.length;
   const enter = index / total;
@@ -164,22 +166,22 @@ function PlatformCard({
   const scale = useTransform(
     progress,
     [settleStart, settlePoint, exit, exitEnd],
-    reducedMotion ? [1, 1, 1, 1] : index === 0 ? [1, 1, 1, 0.93] : [0.97, 1, 1, 0.93]
+    reducedMotion ? [1, 1, 1, 1] : mobile ? (index === 0 ? [1, 1, 1, 0.96] : [0.98, 1, 1, 0.96]) : index === 0 ? [1, 1, 1, 0.93] : [0.97, 1, 1, 0.93]
   );
   const rotateX = useTransform(
     progress,
     [settleStart, settlePoint, exit, exitEnd],
-    reducedMotion ? [0, 0, 0, 0] : [0, 0, 0, 5]
+    reducedMotion || mobile ? [0, 0, 0, 0] : [0, 0, 0, 5]
   );
   const y = useTransform(
     progress,
     [exit, exitEnd],
-    reducedMotion ? [0, 0] : [0, -8]
+    reducedMotion || mobile ? [0, 0] : [0, -8]
   );
   const brightnessValue = useTransform(
     progress,
     [exit, exitEnd],
-    reducedMotion ? [1, 1] : [1, 0.88]
+    reducedMotion ? [1, 1] : mobile ? [1, 0.93] : [1, 0.88]
   );
   const filter = useTransform(
     brightnessValue,
@@ -265,6 +267,16 @@ function PlatformCard({
 }
 
 export default function PlatformSection() {
+  const [mobile, setMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches,
+  );
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px)");
+    const update = () => setMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   const stackRef = useRef<HTMLOListElement>(null);
   const reducedMotion = useReducedMotion();
 
@@ -411,7 +423,7 @@ export default function PlatformSection() {
           border-radius: 24px;
           padding: clamp(26px, 4.2vw, 56px);
           box-shadow: var(--qc-shadow);
-          transition: box-shadow .22s ease;
+          transition: opacity .22s ease;
           transform-origin: center top;
           transform-style: preserve-3d;
         }
@@ -656,7 +668,7 @@ export default function PlatformSection() {
 
           /* Keep the same scroll-linked sticky card stack on phones.
              Only the card's internal layout changes to fit the narrow screen. */
-          .qcp__stack { padding-bottom: 30svh; }
+          .qcp__stack { padding-bottom: 0; }
 
           .qcp__card-slot {
             position: sticky;
