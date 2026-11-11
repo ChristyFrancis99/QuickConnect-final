@@ -683,7 +683,7 @@ export default function PlatformSection() {
           .qcp__card {
             height: auto;
             min-height: 0;
-            padding: 20px;
+            padding: 16px;
             border-radius: 20px;
             max-height: calc(100svh - var(--qc-nav-height) - 16px);
           }
@@ -691,36 +691,36 @@ export default function PlatformSection() {
           .qcp__card-heading { gap: 13px; }
 
           .qcp__icon {
-            width: 46px;
-            height: 46px;
-            flex-basis: 46px;
+            width: 42px;
+            height: 42px;
+            flex-basis: 42px;
             border-radius: 13px;
           }
 
           .qcp__card h3 { font-size: 22px; }
-          .qcp__card-content { margin-top: 16px; }
+          .qcp__card-content { margin-top: 12px; }
           .qcp__card-content { max-width: 100%; padding-bottom: 0; }
           .qcp__card-content p { font-size: 14px; }
-          .qcp__highlights { margin-top: 14px; }
+          .qcp__highlights { margin-top: 10px; }
           .qcp__highlight-list { gap: 7px; }
-          .qcp__highlight { padding: 8px 10px; font-size: 9px; }
+          .qcp__highlight { padding: 6px 8px; font-size: 9px; }
           .qcp__visual-panel {
             position: relative;
             top: auto;
             right: auto;
             bottom: auto;
             width: 100%;
-            height: 210px;
-            margin-top: 22px;
+            height: clamp(118px, 32vw, 150px);
+            margin-top: 10px;
           }
           .qcp__visual-image { animation: none; }
-          .qcp__card-meta { margin-top: 14px; }
-          .qcp__learn { position: relative; right: auto; bottom: auto; align-self: flex-start; margin-top: 16px; }
+          .qcp__card-meta { margin-top: 10px; }
+          .qcp__learn { position: relative; right: auto; bottom: auto; align-self: flex-start; margin-top: 10px; }
 
           .qcp__card-bottom {
             align-items: flex-start;
             flex-direction: column;
-            margin-top: 18px;
+            margin-top: 12px;
           }
 
           .qcp__preview-wrap {
