@@ -162,6 +162,11 @@ export function LoginPage() {
           The image scales proportionally to cover the full browser window without stretching. On desktop the viewport stays fixed; on mobile it scrolls smoothly if content exceeds height.
       ========================================================================= */}
       <div className="flex min-h-full w-full flex-col justify-between px-4 py-5 sm:px-8 sm:py-6 md:px-12 lg:h-full lg:flex-1 lg:min-w-0 lg:overflow-y-auto lg:px-9 lg:py-6 xl:px-12">
+        <div className="pt-2">
+          <Link to="/" className="inline-flex items-center gap-2 rounded-full border border-[#D8D2C8] bg-white/90 px-4 py-2 text-xs font-semibold text-[#343434] shadow-sm transition hover:border-[#A98A52] hover:bg-white">
+            <ArrowRight className="h-3.5 w-3.5 rotate-180" /> Back to Home
+          </Link>
+        </div>
         {/* Center content container */}
         <div className="my-auto w-full max-w-md px-5 py-8 sm:translate-x-3 sm:px-7 lg:translate-x-6 lg:px-8">
           <div className="mb-7">
