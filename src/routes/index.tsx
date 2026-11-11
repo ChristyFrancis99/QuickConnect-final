@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowRight, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
-import { useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { GlobeGallery } from "@/game/globe/GlobeGallery";
 import { HomepageSections } from "@/components/homepage-sections";
 
@@ -30,12 +29,17 @@ function Index() {
   const [isScrolled, setIsScrolled] = useState(() => typeof window !== "undefined" && window.scrollY > 24);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const heroStageRef = useRef<HTMLMainElement>(null);
-  const { scrollY } = useScroll();
+  const scrollSentinelRef = useRef<HTMLSpanElement>(null);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const next = latest > 24;
-    setIsScrolled((current) => (current === next ? current : next));
-  });
+  useEffect(() => {
+    const sentinel = scrollSentinelRef.current;
+    if (!sentinel || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsScrolled(!entry.isIntersecting);
+    });
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -86,6 +90,7 @@ function Index() {
       </header>
 
       <main ref={heroStageRef} className="hero-scroll-stage" data-hero-stage>
+        <span ref={scrollSentinelRef} className="hero-scroll-sentinel" aria-hidden="true" />
         <section className="hero-sticky" aria-labelledby="hero-title">
           <div className="hero-main" id="top">
             <div className="hero-copy">
