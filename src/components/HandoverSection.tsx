@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
   motion,
-  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -46,13 +45,11 @@ function HandoverStep({
   index,
   progress,
   reducedMotion,
-  activeStep,
 }: {
   step: (typeof handoverSteps)[number];
   index: number;
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   reducedMotion: boolean;
-  activeStep: number;
 }) {
   const segmentStart = index / handoverSteps.length;
   const segmentMiddle = (index + 0.5) / handoverSteps.length;
@@ -83,7 +80,6 @@ function HandoverStep({
   return (
     <motion.li
       className="qc-handover__step"
-      aria-current={index === activeStep ? "step" : undefined}
       style={
         reducedMotion
           ? undefined
@@ -120,7 +116,6 @@ function HandoverStep({
 
 export default function HandoverSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeStep, setActiveStep] = useState(0);
   const reducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
@@ -128,13 +123,7 @@ export default function HandoverSection() {
     offset: ["start center", "end center"],
   });
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const nextStep = Math.min(
-      handoverSteps.length - 1,
-      Math.max(0, Math.floor(latest * handoverSteps.length)),
-    );
-    setActiveStep((current) => current === nextStep ? current : nextStep);
-  });
+
 
   const progressScale = useTransform(
     scrollYProgress,
@@ -203,15 +192,10 @@ export default function HandoverSection() {
                 index={index}
                 progress={scrollYProgress}
                 reducedMotion={Boolean(reducedMotion)}
-                activeStep={activeStep}
               />
             ))}
           </ol>
 
-          <span className="qc-handover__sr-only" aria-live="polite">
-            Step {activeStep + 1} of {handoverSteps.length}:{" "}
-            {handoverSteps[activeStep].title}
-          </span>
         </div>
       </div>
 
