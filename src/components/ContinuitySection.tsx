@@ -245,7 +245,7 @@ export default function ContinuitySection({ onViewClick }: ContinuitySectionProp
           position: relative;
           isolation: isolate;
           border-radius: 28px;
-          background: var(--qc-cream);
+          background: var(--qc-off-white);
           color: var(--qc-charcoal);
           padding: clamp(52px, 7vw, 88px) clamp(20px, 4vw, 48px) clamp(48px, 6vw, 72px);
           font-family: "Plus Jakarta Sans", sans-serif;
