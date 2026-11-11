@@ -96,7 +96,7 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<Person>(() => personById(DEFAULT_USER_ID));
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   // Initialize from localStorage if available
   useEffect(() => {
@@ -108,7 +108,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           const found = people.find((p) => p.id === parsed.userId);
           if (found) {
             setUser(found);
-            setIsAuthenticated(parsed.isAuthenticated ?? true);
+            setIsAuthenticated(parsed.isAuthenticated ?? false);
           }
         }
       }
