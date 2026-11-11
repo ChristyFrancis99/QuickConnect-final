@@ -661,7 +661,7 @@ export default function PlatformSection() {
         }
 
         @media (max-width: 768px) {
-          .qcp { padding: 75px 14px 5svh; }
+          .qcp { padding: 75px 14px 0; }
           .qcp__intro { margin-bottom: 45px; }
           .qcp__intro h2 br { display: none; }
           .qcp__intro p { font-size: 14px; }
@@ -675,8 +675,8 @@ export default function PlatformSection() {
             top: calc(var(--qc-nav-height) + 12px);
             height: auto;
             min-height: 0;
-            margin-bottom: 30svh;
-            perspective: 1200px;
+            margin-bottom: 8svh;
+            perspective: none;
           }
 
           .qcp__card {
