@@ -399,3 +399,17 @@ Copy this template into the session log after each build session:
 - **Checks:** Not run from this GitHub-only editing session.
 - **Remaining:** The GitHub repository slug is still `QuickConnect`; rename it in GitHub repository Settings when ready. The README clone URL remains unchanged until then.
 - **Next action:** Run install/build/lint/tests locally and check browser demo state after the storage-key namespace change.
+
+## 6. Mobile homepage scroll and animation pass (2026-11-11)
+
+- [x] Contain the mobile hero within its own clipping boundary and return it to natural document flow on widths up to 768px; retain the fixed navigation without a long sticky hero scroll track.
+- [x] Keep horizontal overflow clipping on the app root only; remove the body-level clipping that can interfere with sticky descendants.
+- [x] Reduce mobile globe panel rows, cap renderer DPR at 1.5, and disable scroll-driven breakup and drag tilt on mobile.
+- [x] Keep continuity-step cards readable while approaching and use transform/opacity for connector motion.
+- [x] Keep the mobile continuity carousel native-scrollable with both-axis touch handling, one pagination indicator set, and observer-driven active pagination.
+- [x] Simplify the mobile platform stack with a shared sticky offset, opaque cards, no 3D tilt, smaller overlap scaling, and no trailing stack space.
+- [x] Keep handover steps legible before activation; make the mobile section heading sticky and position the photo alongside it so it does not take a separate block before step 01.
+- [x] Disable problem-card auto-cycling on mobile.
+- [ ] Verify at 320px, 360px, 390px, 430px and 480px in Android Chrome; check desktop visuals for regressions.
+- [ ] Run lint, tests, and production build in a local checkout or CI. These checks were not run as part of this GitHub-only edit session.
+
