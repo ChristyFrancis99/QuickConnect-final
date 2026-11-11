@@ -152,10 +152,7 @@ export default function ContinuitySteps() {
       ref={sectionRef}
       aria-labelledby="continuity-steps-heading"
       className="relative isolate overflow-clip bg-[#F5F4F0] px-[18px] py-16 text-[#252525] md:px-[5vw] md:py-28"
-      style={{
-        backgroundImage: "radial-gradient(ellipse at 78% 12%,rgba(198,154,77,.105),transparent 42%),repeating-linear-gradient(to bottom,transparent 0 31px,rgba(37,37,37,.05) 31px 32px)",
-        fontFamily: '"Plus Jakarta Sans", sans-serif',
-      }}
+      style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}
     >
       <div className="mx-auto w-full max-w-[1120px]">
         <header className="relative z-10 mx-auto mb-[66px] max-w-[780px] text-left md:mb-28 md:text-center">
