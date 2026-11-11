@@ -686,6 +686,7 @@ export default function PlatformSection() {
             padding: 16px;
             border-radius: 20px;
             max-height: calc(100svh - var(--qc-nav-height) - 16px);
+            transform-style: flat;
           }
 
           .qcp__card-heading { gap: 13px; }
