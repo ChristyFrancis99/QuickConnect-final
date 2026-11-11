@@ -327,7 +327,7 @@ export function GlobeGallery({ scrollTarget }: GlobeGalleryProps) {
       <motion.div className="globe-canvas-expansion" style={{ scale: prefersReducedMotion || isMobile ? 1 : explosionScale }}>
       <Canvas
         frameloop={isInView ? (prefersReducedMotion ? "demand" : "always") : "never"}
-        dpr={[1, 1.5]}
+        dpr={isMobile ? [1, 1.5] : [1, 1.25]}
         camera={{ position: [0, 0, 7.2], fov: 40 }}
         gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
         className="globe-canvas"
