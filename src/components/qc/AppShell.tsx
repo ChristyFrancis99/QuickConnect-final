@@ -31,7 +31,7 @@ const icons = {
 function Logo() {
   return (
     <Link to="/" aria-label="Return to QuickConnect home" className="flex min-h-11 items-center rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring">
-      <img src={logo} alt="QuickConnect" className="h-10 w-auto max-w-full object-contain object-left" />
+      <img src={logo} alt="QuickConnect" className="h-7 w-auto max-w-[150px] object-contain object-left sm:h-8" />
     </Link>
   );
 }
