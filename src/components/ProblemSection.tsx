@@ -43,7 +43,7 @@ export default function ProblemSection() {
   const reduced = reduceMotion ?? false;
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px)");
+    const media = window.matchMedia("(max-width: 768px)");
     const update = () => setMobile(media.matches);
     update();
     media.addEventListener("change", update);
