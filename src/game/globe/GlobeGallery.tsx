@@ -241,7 +241,7 @@ export function GlobeGallery({ scrollTarget }: GlobeGalleryProps) {
   const explosionScale = useTransform(scrollYProgress, [0, 0.12, 0.55, 1], [1, 1.28, 2.15, 2.3]);
 
   const handlePointerDown = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse" && event.button !== 0) return;
+    if (event.pointerType !== "mouse" || event.button !== 0) return;
     drag.current.active = true;
     drag.current.velocity = 0;
     drag.current.x = event.clientX;
