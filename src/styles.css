@@ -192,9 +192,16 @@
 .brand-logo {
   display: block;
   width: auto;
-  height: 34px;
-  max-width: 170px;
+  height: 46px;
+  max-width: 220px;
   object-fit: contain;
+}
+
+@media (max-width: 980px) {
+  .brand-logo {
+    height: 42px;
+    max-width: 200px;
+  }
 }
 
 .desktop-nav {
