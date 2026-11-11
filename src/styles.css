@@ -1387,3 +1387,16 @@ button, [role="button"], a {
     padding-top: 10px;
   }
 }
+
+
+/* Fix oversized flex-basis creating a blank block below the footer tagline */
+@media (max-width: 768px) {
+  .qc-footer-brand {
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    height: auto;
+    align-content: flex-start;
+  }
+}
